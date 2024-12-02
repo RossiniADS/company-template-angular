@@ -1,0 +1,257 @@
+<div class="blog-details-page">
+
+  <div class="main">
+
+    <!-- Page Title -->
+    <div class="page-title dark-background">
+      <div class="container position-relative">
+        <h1>{{ pageTitle }}</h1>
+        <p>{{ pageDescription }}</p>
+        <nav class="breadcrumbs">
+          <ol>
+            <li><a href="index.html">{{ breadcrumbs[0].label }}</a></li>
+            <li class="current">{{ breadcrumbs[1].label }}</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+    <!-- End Page Title -->
+
+    <div class="container">
+      <div class="row">
+
+        <div class="col-lg-8">
+
+          <section id="blog-details" class="blog-details section">
+            <div class="container">
+              <article class="article">
+                <!-- Post Image -->
+                <div class="post-img" *ngIf="post.image">
+                  <img [src]="post.image" [alt]="post.title" class="img-fluid" />
+                </div>
+
+                <!-- Post Title -->
+                <h2 class="title">{{ post.title }}</h2>
+
+                <!-- Meta Information -->
+                <div class="meta-top">
+                  <ul>
+                    <li class="d-flex align-items-center">
+                      <i class="bi bi-person"></i>
+                      <a href="javascript:void(0)">{{ post.author }}</a>
+                    </li>
+                    <li class="d-flex align-items-center">
+                      <i class="bi bi-clock"></i>
+                      <a href="javascript:void(0)">
+                        <time [attr.datetime]="post.date">{{ post.dateFormatted }}</time>
+                      </a>
+                    </li>
+                    <li class="d-flex align-items-center">
+                      <i class="bi bi-chat-dots"></i>
+                      <a href="javascript:void(0)">{{ post.comments }} Comments</a>
+                    </li>
+                  </ul>
+                </div>
+                <!-- End meta top -->
+                <!-- Post Content -->
+                <div class="content">
+                  <p *ngFor="let paragraph of post.content">{{ paragraph }}</p>
+
+                  <!-- Quote -->
+                  <blockquote *ngIf="post.quote">
+                    <p>{{ post.quote }}</p>
+                  </blockquote>
+
+                  <!-- Additional Content -->
+                  <h3 *ngIf="post.subheadings[0]?.title">{{ post.subheadings[0].title }}</h3>
+                  <p *ngIf="post.subheadings[0]?.content">{{ post.subheadings[0].content }}</p>
+
+                  <div *ngIf="post.insideImage">
+                    <img [src]="post.insideImage" class="img-fluid" [alt]="post.title" />
+                  </div>
+
+                  <h3 *ngIf="post.subheadings[1]?.title">{{ post.subheadings[1].title }}</h3>
+                  <p *ngIf="post.subheadings[1]?.content">{{ post.subheadings[1].content }}</p>
+                </div>
+                <!-- End post content -->
+                <!-- Meta Bottom -->
+                <div class="meta-bottom">
+                  <i class="bi bi-folder"></i>
+                  <ul class="cats">
+                    <li *ngFor="let category of post.categories">
+                      <a href="javascript:void(0)">{{ category }}</a>
+                    </li>
+                  </ul>
+
+                  <i class="bi bi-tags"></i>
+                  <ul class="tags">
+                    <li *ngFor="let tag of post.tags">
+                      <a href="javascript:void(0)">{{ tag }}</a>
+                    </li>
+                  </ul>
+                </div>
+                <!-- End meta bottom -->
+              </article>
+            </div>
+          </section>
+
+          <section id="blog-comments" class="blog-comments section">
+            <div class="container">
+              <h4 class="comments-count">{{ comments.length }} Comments</h4>
+
+              <div *ngFor="let comment of comments; let i = index" [id]="'comment-' + (i + 1)" class="comment">
+                <div class="d-flex">
+                  <div class="comment-img">
+                    <img [src]="comment.imgSrc" [alt]="comment.imgAlt">
+                  </div>
+                  <div>
+                    <h5>
+                      <a href="">{{ comment.author }}</a>
+                      <a href="#" class="reply" (click)="toggleReply(i)">
+                        <i class="bi bi-reply-fill"></i> Reply
+                      </a>
+                    </h5>
+                    <time [attr.datetime]="comment.date">{{ comment.formattedDate }}</time>
+                    <p>{{ comment.text }}</p>
+                  </div>
+                </div>
+
+                <!-- Verifica se o comentário tem respostas -->
+                <div *ngIf="comment.replies && comment.replies.length > 0">
+                  <div *ngFor="let reply of comment.replies; let j = index" [id]="'comment-reply-' + (i + 1) + '-' + (j + 1)" class="comment comment-reply">
+                    <div class="d-flex">
+                      <div class="comment-img">
+                        <img [src]="reply.imgSrc" [alt]="reply.imgAlt">
+                      </div>
+                      <div>
+                        <h5>
+                          <a href="">{{ reply.author }}</a>
+                          <a href="#" class="reply" (click)="toggleReply(i, j)">
+                            <i class="bi bi-reply-fill"></i> Reply
+                          </a>
+                        </h5>
+                        <time [attr.datetime]="reply.date">{{ reply.formattedDate }}</time>
+                        <p>{{ reply.text }}</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Formulário para adicionar uma resposta -->
+                <div *ngIf="comment.showReplyForm" class="comment-reply-form">
+                  <textarea placeholder="Write a reply..."></textarea>
+                  <button (click)="submitReply(i)">Submit Reply</button>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <section id="comment-form" class="comment-form section">
+            <div class="container">
+              <form action="">
+                <h4>Post Comment</h4>
+                <p>Your email address will not be published. Required fields are marked * </p>
+                <div class="row">
+                  <div class="col-md-6 form-group">
+                    <input name="name" type="text" class="form-control" placeholder="Your Name*">
+                  </div>
+                  <div class="col-md-6 form-group">
+                    <input name="email" type="text" class="form-control" placeholder="Your Email*">
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col form-group">
+                    <input name="website" type="text" class="form-control" placeholder="Your Website">
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col form-group">
+                    <textarea name="comment" class="form-control" placeholder="Your Comment*"></textarea>
+                  </div>
+                </div>
+                <div class="text-center">
+                  <button type="submit" class="btn btn-primary">Post Comment</button>
+                </div>
+              </form>
+            </div>
+          </section>
+
+        </div>
+
+        <!-- Sidebar -->
+        <div class="col-lg-4 sidebar">
+          <div class="widgets-container">
+
+            <!-- Blog Author Widget -->
+            <div class="blog-author-widget widget-item">
+              <div class="d-flex flex-column align-items-center">
+                <img [src]="authorWidget.imgSrc" class="rounded-circle flex-shrink-0" [alt]="authorWidget.imgAlt">
+                <h4>{{ authorWidget.name }}</h4>
+                <div class="social-links">
+                  <a *ngFor="let link of authorWidget.socialLinks" [href]="link.url"><i [class]="link.icon"></i></a>
+                </div>
+                <p>{{ authorWidget.bio }}</p>
+              </div>
+            </div>
+
+            <!-- Search Widget -->
+            <div class="search-widget widget-item">
+              <h3 class="widget-title">Search</h3>
+              <form action="">
+                <input type="text">
+                <button type="submit" title="Search"><i class="bi bi-search"></i></button>
+              </form>
+            </div>
+
+            <!-- Categories Widget -->
+            <div class="categories-widget widget-item">
+              <h3 class="widget-title">Categories</h3>
+              <ul>
+                <li *ngFor="let category of categories">
+                  <a href="#">{{ category.name }} <span>({{ category.count }})</span></a>
+                </li>
+              </ul>
+            </div>
+
+            <!-- Recent Posts Widget -->
+            <div class="recent-posts-widget widget-item">
+              <h3 class="widget-title">Recent Posts</h3>
+              <div *ngFor="let post of recentPosts" class="post-item">
+                <img [src]="post.imgSrc" [alt]="post.imgAlt" class="flex-shrink-0">
+                <div>
+                  <h4><a href="blog-details.html">{{ post.title }}</a></h4>
+                  <time [attr.datetime]="post.date">{{ post.formattedDate }}</time>
+                </div>
+              </div>
+            </div>
+
+            <!-- Tags Widget -->
+            <div class="tags-widget widget-item">
+
+              <h3 class="widget-title">Tags</h3>
+              <ul>
+                <li><a href="#">App</a></li>
+                <li><a href="#">IT</a></li>
+                <li><a href="#">Business</a></li>
+                <li><a href="#">Mac</a></li>
+                <li><a href="#">Design</a></li>
+                <li><a href="#">Office</a></li>
+                <li><a href="#">Creative</a></li>
+                <li><a href="#">Studio</a></li>
+                <li><a href="#">Smart</a></li>
+                <li><a href="#">Tips</a></li>
+                <li><a href="#">Marketing</a></li>
+              </ul>
+
+            </div><!--/Tags Widget -->
+
+          </div>
+        </div>
+        <!-- /Sidebar -->
+
+      </div>
+    </div>
+
+  </div>
+
+</div>

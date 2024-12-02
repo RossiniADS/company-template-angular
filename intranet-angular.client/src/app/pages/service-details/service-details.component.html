@@ -1,0 +1,61 @@
+<div class="service-details-page">
+  <div class="main">
+    <!-- Page Title -->
+    <div class="page-title dark-background">
+      <div class="container position-relative">
+        <h1>{{ pageTitle }}</h1>
+        <p>{{ pageDescription }}</p>
+        <nav class="breadcrumbs">
+          <ol>
+            <li><a [routerLink]="breadcrumbs[0].link">{{ breadcrumbs[0].label }}</a></li>
+            <li class="current">{{ breadcrumbs[1].label }}</li>
+          </ol>
+        </nav>
+      </div>
+    </div>
+    <!-- End Page Title -->
+    <!-- Service Details Section -->
+    <section id="service-details" class="service-details section">
+      <div class="container">
+        <div class="row gy-5">
+          <div class="col-lg-4" data-aos="fade-up" data-aos-delay="100">
+            <div class="service-box">
+              <h4>{{ servicesListTitle }}</h4>
+              <div class="services-list">
+                <a *ngFor="let service of servicesList" [class.active]="service.active" href="#">
+                  <i class="bi bi-arrow-right-circle"></i><span>{{ service.name }}</span>
+                </a>
+              </div>
+            </div>
+            <!-- End Services List -->
+            <div class="service-box">
+              <h4>{{ downloadCatalogTitle }}</h4>
+              <div class="download-catalog">
+                <a *ngFor="let file of downloadCatalog" [href]="file.link">
+                  <i [class]="file.icon"></i><span>{{ file.label }}</span>
+                </a>
+              </div>
+            </div>
+            <!-- End Services List -->
+            <div class="help-box d-flex flex-column justify-content-center align-items-center">
+              <i class="bi bi-headset help-icon"></i>
+              <h4>{{ helpTitle }}</h4>
+              <p class="d-flex align-items-center mt-2 mb-0"><i class="bi bi-telephone me-2"></i> <span>{{ helpPhone }}</span></p>
+              <p class="d-flex align-items-center mt-1 mb-0"><i class="bi bi-envelope me-2"></i> <a [href]="'mailto:' + helpEmail">{{ helpEmail }}</a></p>
+            </div>
+          </div>
+          <div class="col-lg-8 ps-lg-5" data-aos="fade-up" data-aos-delay="200">
+            <img [src]="serviceImage" alt="" class="img-fluid services-img">
+            <h3>{{ serviceTitle }}</h3>
+            <p>{{ serviceDescription }}</p>
+            <ul>
+              <li *ngFor="let benefit of serviceBenefits"><i class="bi bi-check-circle"></i> <span>{{ benefit }}</span></li>
+            </ul>
+            <p *ngFor="let paragraph of additionalInfo">{{ paragraph }}</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- /Service Details Section -->
+  </div>
+</div>
