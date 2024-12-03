@@ -15,7 +15,6 @@ import { PortfolioComponent } from './pages/portfolio/portfolio.component';
 import { PortfolioDetailsComponent } from './pages/portfolio-details/portfolio-details.component';
 import { ServicesComponent } from './pages/services/services.component';
 import { ServiceDetailsComponent } from './pages/service-details/service-details.component';
-import { StarterPageComponent } from './pages/starter-page/starter-page.component';
 import { TeamComponent } from './pages/team/team.component';
 
 @NgModule({
@@ -32,7 +31,6 @@ import { TeamComponent } from './pages/team/team.component';
     PortfolioDetailsComponent,
     ServicesComponent,
     ServiceDetailsComponent,
-    StarterPageComponent,
     TeamComponent
   ],
   imports: [

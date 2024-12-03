@@ -1,1 +1,1 @@
-# intranet-angular
+# company-template-angular

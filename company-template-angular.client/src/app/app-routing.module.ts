@@ -10,7 +10,6 @@ import { ContactComponent } from './pages/contact/contact.component';
 import { ServiceDetailsComponent } from './pages/service-details/service-details.component';
 import { BlogDetailComponent } from './pages/blog-detail/blog-detail.component';
 import { PortfolioDetailsComponent } from './pages/portfolio-details/portfolio-details.component';
-import { StarterPageComponent } from './pages/starter-page/starter-page.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -23,7 +22,6 @@ const routes: Routes = [
   { path: 'blog', component: BlogComponent },
   { path: 'blog-detail', component: BlogDetailComponent },
   { path: 'contact', component: ContactComponent },
-  { path: 'starter-page', component: StarterPageComponent },
   { path: '**', redirectTo: '', pathMatch: 'full' }
 ];
 

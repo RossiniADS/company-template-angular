@@ -34,5 +34,5 @@ export class AppComponent implements OnInit {
     );
   }
 
-  title = 'intranet-angular.client';
+  title = 'company-template-angular.client';
 }

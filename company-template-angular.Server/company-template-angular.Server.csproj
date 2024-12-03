@@ -5,7 +5,7 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <RootNamespace>intranet_angular.Server</RootNamespace>
-    <SpaRoot>..\intranet-angular.client</SpaRoot>
+    <SpaRoot>..\company-template-angular.client</SpaRoot>
     <SpaProxyLaunchCommand>npm start</SpaProxyLaunchCommand>
     <SpaProxyServerUrl>https://localhost:51466</SpaProxyServerUrl>
   </PropertyGroup>
@@ -18,7 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\intranet-angular.client\intranet-angular.client.esproj">
+    <ProjectReference Include="..\company-template-angular.client\company-template-angular.client.esproj">
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
     </ProjectReference>
   </ItemGroup>
