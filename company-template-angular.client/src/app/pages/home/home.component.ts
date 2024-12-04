@@ -1,5 +1,7 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
 import GLightbox from 'glightbox';
+import Swiper from 'swiper';
+import { register } from 'swiper/element/bundle';
 
 @Component({
   selector: 'app-home',
@@ -10,16 +12,37 @@ import GLightbox from 'glightbox';
 export class HomeComponent implements AfterViewInit, OnInit {
   currentSlideIndex = 0;
   carouselItems = [
-    { title: 'Welcome to Moderna', description: 'Ut velit est quam dolor ad a aliquid qui aliquid...' },
-    { title: 'Lorem Ipsum Dolor', description: 'Sequi ea ut et est quaerat sequi nihil ut aliquam...' },
-    { title: 'Sequi ea ut et est quaerat', description: 'Esse doloremque accusamus repellendus...' }
+    { title: 'Santa Casa de Lorena', description: 'Portal voltado a comunicação interna dos funcionários para facilitar o compartilhamento de informações, documentos e recursos entre os colaboradores.' },
+    //{ title: 'Lorem Ipsum Dolor', description: 'Sequi ea ut et est quaerat sequi nihil ut aliquam...' },
+    //{ title: 'Sequi ea ut et est quaerat', description: 'Esse doloremque accusamus repellendus...' }
   ];
 
-  ngOnInit() { }
+  ngOnInit() {
+    register()
+  }
 
   ngAfterViewInit(): void {
     GLightbox({
       selector: '.glightbox',
+    });
+
+    new Swiper('.mySwiper', {
+      loop: true,
+      speed: 600,
+      autoplay: {
+        delay: 5000,
+        disableOnInteraction: false
+      },
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+      slidesPerView: 3,
+      pagination: {
+        el: '.swiper-pagination',
+        "type": "bullets",
+        clickable: true,
+      }
     });
   }
 
@@ -108,6 +131,37 @@ export class HomeComponent implements AfterViewInit, OnInit {
       description: 'Ullamco laboris nisi ut aliquip ex ea commodo consequat...',
       image: 'assets/img/features-4.svg'
     }
+  ];
+
+  pricingPlans = [
+    {
+      title: 'Comunicados Internos',
+      price: '49',
+      period: '/ month',
+      image: 'assets/img/comunicado.png',
+      description: 'Alguma coisa ai!'
+    },
+    {
+      title: 'Aniversáriantes do mês',
+      price: '49',
+      period: '/ month',
+      image: 'assets/img/aniversariantes.png',
+      description: 'Alguma coisa ai!'
+    },
+    {
+      title: 'Cardápio da semana',
+      price: '0',
+      period: '/ month',
+      image: 'assets/img/cardapio.png',
+      description: 'Lista dos cardapios da semana'
+    },
+    {
+      title: 'Diretoria Técnica ',
+      price: '29',
+      period: '/ month',
+      image: 'assets/img/diretoria.png',
+      description: 'Nossa diretoria'
+    },
   ];
 
 }

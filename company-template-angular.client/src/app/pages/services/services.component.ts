@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
+import Swiper from 'swiper';
 
 @Component({
   selector: 'app-services',
@@ -7,7 +8,31 @@ import { Component } from '@angular/core';
   templateUrl: './services.component.html',
   styleUrl: './services.component.css'
 })
-export class ServicesComponent {
+export class ServicesComponent implements AfterViewInit, OnInit {
+  ngOnInit() {
+    this.pricingPlans = [...this.pricingPlans, ...this.pricingPlans]
+  }
+
+  ngAfterViewInit(): void {
+    new Swiper('.mySwiper', {
+      loop: true,
+      speed: 600,
+      autoplay: {
+        delay: 5000,
+        disableOnInteraction: false
+      },
+      slidesPerView: 3,
+      slidesPerGroup: 3,
+      loopAddBlankSlides: true,
+      pagination: {
+        el: '.swiper-pagination',
+        "type": "bullets",
+        clickable: true,
+      }
+    });
+  }
+
+
   pageTitle = 'Services';
   pageSubtitle = 'Esse dolorum voluptatum ullam est sint nemo et est ipsa porro placeat quibusdam quia assumenda numquam molestias.';
   breadcrumbs = [
@@ -79,6 +104,7 @@ export class ServicesComponent {
       title: 'Free Plan',
       price: '0',
       period: '/ month',
+      image: 'assets/img/team/team-1.jpg',
       features: [
         { text: 'Quam adipiscing vitae proin', available: true },
         { text: 'Nec feugiat nisl pretium', available: true },
@@ -91,6 +117,7 @@ export class ServicesComponent {
       title: 'Business Plan',
       price: '29',
       period: '/ month',
+      image: 'assets/img/team/team-1.jpg',
       features: [
         { text: 'Quam adipiscing vitae proin', available: true },
         { text: 'Nec feugiat nisl pretium', available: true },
@@ -103,6 +130,7 @@ export class ServicesComponent {
       title: 'Developer Plan',
       price: '49',
       period: '/ month',
+      image: 'assets/img/team/team-1.jpg',
       features: [
         { text: 'Quam adipiscing vitae proin', available: true },
         { text: 'Nec feugiat nisl pretium', available: true },

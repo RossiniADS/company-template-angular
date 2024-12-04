@@ -1,0 +1,84 @@
+.image-container {
+  position: relative;
+  text-align: center;
+}
+
+.image-overlay-dark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* Escurece a imagem */
+  z-index: 1;
+}
+
+.image-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  color: white;
+  z-index: 2; /* Coloca o texto acima da camada escura */
+}
+
+.image-title {
+  font-size: 1.8rem;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.image-price {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.pricing-info {
+  background: #f8f9fa;
+  padding: 20px;
+  border-radius: 0 0 5px 5px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.pricing-info .description {
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 20px;
+}
+
+.features-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 20px;
+}
+
+.features-list li {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.features-list i {
+  margin-right: 10px;
+  color: #28a745; /* Verde para disponíveis */
+}
+
+.features-list i.bi-x {
+  color: #dc3545; /* Vermelho para indisponíveis */
+}
+
+.buy-btn {
+  display: inline-block;
+  background: #007bff;
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 25px;
+  text-decoration: none;
+  transition: background-color 0.3s;
+}
+
+.buy-btn:hover {
+  background: #0056b3;
+}

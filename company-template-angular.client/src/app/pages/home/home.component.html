@@ -13,12 +13,12 @@
               <div class="carousel-container">
                 <h2>{{ item.title }}</h2>
                 <p>{{ item.description }}</p>
-                <a href="#about" class="btn-get-started">Read More</a>
+                <!--<a href="#about" class="btn-get-started">Read More</a>-->
               </div>
             </div>
           </div>
 
-          <a class="carousel-control-prev" (click)="prevSlide()" role="button">
+          <!--<a class="carousel-control-prev" (click)="prevSlide()" role="button">
             <span class="carousel-control-prev-icon bi bi-chevron-left" aria-hidden="true"></span>
           </a>
           <a class="carousel-control-next" (click)="nextSlide()" role="button">
@@ -29,12 +29,49 @@
             <li *ngFor="let item of carouselItems; let i = index"
                 [class.active]="i === currentSlideIndex"
                 (click)="goToSlide(i)"></li>
-          </ol>
+          </ol>-->
         </div>
       </div>
     </section>
 
-    <section id="featured-services" class="featured-services section">
+    <section id="pricing" class="pricing section">
+      <div class="container">
+        <div class="swiper mySwiper">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide" *ngFor="let plan of pricingPlans">
+              <div class="pricing-item">
+                <div class="image-container">
+                  <img class="img-fluid rounded-top" [src]="plan.image" [alt]="plan.title">
+                  <!-- Sobreposição escura -->
+                  <div class="image-overlay-dark"></div>
+                  <div class="image-overlay">
+                    <h3 class="image-title">{{ plan.title }}</h3>
+                    <!--<h4 class="image-price">$ {{ plan.price }} {{ plan.period }}</h4>-->
+                  </div>
+                </div>
+                <div class="pricing-info text-center">
+                  <p>{{plan.description}}</p>
+                  <!--<ul class="features-list">
+                    <li *ngFor="let feature of plan.features">
+                      <i [class]="feature.available ? 'bi bi-check' : 'bi bi-x'"></i>
+                      <span>{{ feature.text }}</span>
+                    </li>
+                  </ul>-->
+                  <div class="text-center"><a href="#" class="buy-btn">Ver mais!</a></div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Botões de navegação -->
+          <div class="swiper-button-next"></div>
+          <div class="swiper-button-prev"></div>
+          <!-- Paginação -->
+          <div class="swiper-pagination"></div>
+        </div>
+      </div>
+    </section>
+
+    <!--<section id="featured-services" class="featured-services section">
       <div class="container">
         <div class="row gy-4">
           <div class="col-lg-3 col-md-6" *ngFor="let service of featuredServices; let i = index" [attr.data-aos-delay]="100 * (i + 1)">
@@ -50,7 +87,7 @@
           </div>
         </div>
       </div>
-    </section>
+    </section>-->
 
     <section id="about" class="about section light-background">
       <div class="container">
